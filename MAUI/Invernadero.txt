@@ -1,0 +1,110 @@
+ENT
+	clsInvernadero{
+		private int idInvernadero;
+		private string nombre;
+
+		public int IdInvernadero
+		{
+			get {return idInvernadero;}
+			set {idInvernadero = value;} // Puede que sí o puede que no
+		}
+
+		public string Nombre
+		{
+			get {return nombre;}
+			set {nombre = value;}
+		}
+
+		public clsInvernadero()
+        {
+        }
+
+        public clsInvernadero(int idInvernadero, string nombre)
+        {
+            this.idInvernadero = idInvernadero;
+			this.nombre = nombre;
+        }
+	}
+
+	clsTemperatura{
+		private int idInvernadero;
+		private DateTime fecha;
+		private double temp1;
+		private double temp2;
+		private double temp3;
+		private int humedad1;
+		private int humedad2;
+		private int humedad3;
+
+		public int IdInvernadero
+		{
+			get {return idInvernadero;}
+			set {idInvernadero = value;} // Puede que sí o puede que no
+		}
+
+		public DateTime Fecha
+		{
+			get {return fecha;}
+			set {idInvernadero = fecha;} // Puede que sí o puede que no
+		}
+
+		public double Temp1
+		{
+			get {return temp1;}
+			set {temp1 = value;} 
+		}
+
+		public double Temp2
+		{
+			get {return temp2;}
+			set {temp2 = value;} 
+		}
+
+		public double Temp3
+		{
+			get {return temp3;}
+			set {temp3 = value;} 
+		}
+
+		public int Humedad1
+		{
+			get {return humedad1;}
+			set {humedad1 = value;} 
+		}
+
+		public int Humedad2
+		{
+			get {return humedad2;}
+			set {humedad2 = value;} 
+		}
+
+		public int Humedad3
+		{
+			get {return humedad3;}
+			set {humedad3 = value;} 
+		}
+
+		public clsTemperatura()
+        {
+			this.fecha = DateTime.Now;
+        }
+
+        public clsTemperatura(int idInvernadero, DateTime fecha, int temp1, int temp2, int temp3, double humedad1, double humedad2, double humedad3)
+        {
+            this.idInvernadero = idInvernadero;
+			this.fecha = fecha;
+			this.temp1 = temp1;
+			this.temp2 = temp2;
+			this.temp3 = temp3;
+			this.humedad1 = humedad1;
+			this.humedad2 = humedad2;
+			this.humedad3 = humedad3;
+        }		
+	}
+
+DAL
+
+BL
+
+MAUI
+
