@@ -107,6 +107,89 @@ DAL
 BL
 
 MAUI
+	VM
+		// Para la página 1. Investiga cómo hacer para que navegue porque en los apuntes está en el código behind y esto es un viewmodel, hay que decir qué ventana está abierta y que navegue en ella
+		"navigate to other page from ViewModel MAUI" sin shell
+		clsSeleccionarInvernaderoVM { // Creo que no Hereda, no hereda
+			private List<clsInvernadero> listadoInvernaderos;
+			private clsInvernadero invernaderoElegido;
+			private DateTime fechaSeleccionada;
+			private DelegateCommand botonVer; ?
+			
+			public List<clsInvernadero> ListadoInvernaderos
+			{
+			    get { return listadoInvernaderos; }
+			}
+			
+			public clsInvernadero InvernaderoElegido
+			{
+			    get { return invernaderoElegido; }
+			    set
+			    {
+			        invernaderoElegido = value;
+			        botonVer.RaiseCanExecuteChanged();
+			    }
+			}
+			
+			public DateTime FechaSeleccionada
+			{
+			    get { return fechaSeleccionada; }
+			    set
+			    {
+			        fechaSeleccionada = value;
+			        botonVer.RaiseCanExecuteChanged();
+			    }
+			}
+			
+			public DelegateCommand BotonVer
+			{
+			    get { return botonVer; }
+			}
+			
+			public clsSeleccionarInvernaderoVM()
+			
+			{
+			   // TODO: Inicializa todos los Atributos necesarios y el Command
+			
+			}
+
+			private async void muestraMensaje(string titulo, string cuerpo, string boton)
+			{
+			    await Application.Current.MainPage.DisplayAlert(titulo, cuerpo, boton);
+			}
+
+			private void verExecute()
+			{
+			    // TODO: Acciones y mensajes necesarios para ver el Invernadero
+			}
+
+
+			private bool habilitarVer()
+			{
+			    // TODO: Acciones necesarias para habilitar el Boton
+
+			}
+		}
+
+		// Para la página 2 // Si quieres esto ponlo como DTO para que te valga para ASP, quizás no lo haga porque este VM es sencillo
+		clsTemperaturasConNombreInvernaderoVM : clsTemperatura{ // ¿hereda?
+			private string nombreInvernadero;
+
+			public string NombreInvernadero
+			{
+			    get { return nombreInvernadero; }
+			}
+
+			public clsTemperaturasConNombreInvernaderoVM() 
+			{
+			    
+			}
+
+			public clsLuchadorConPuntuacionTotal(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
+			{
+			    this.nombreInvernadero = nombreInvernadero;
+			}
+		}
 
 ASP
 	TODO: Después de Feria
