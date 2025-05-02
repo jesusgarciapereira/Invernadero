@@ -29,10 +29,10 @@ ENT
 	clsTemperatura{
 		private int idInvernadero;
 		private DateTime fecha;
-		private double temp1;
+		private double temp1; // Sólo una decimal (ºC)
 		private double temp2;
 		private double temp3;
-		private int humedad1;
+		private int humedad1; // Un porcentaje
 		private int humedad2;
 		private int humedad3;
 
@@ -108,3 +108,5 @@ BL
 
 MAUI
 
+ASP
+	TODO: Después de Feria
