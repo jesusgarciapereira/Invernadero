@@ -72,7 +72,13 @@ namespace ENT
         #region Constructores
         public clsTemperatura()
         {
-            this.fecha = DateTime.Now;
+            this.fecha = DateTime.Now; // Creo que no
+        }
+
+        public clsTemperatura(int idInvernadero, DateTime fecha)
+        {
+            this.idInvernadero = idInvernadero;
+            this.fecha = fecha;
         }
 
         public clsTemperatura(int idInvernadero, DateTime fecha, double temp1, double temp2, double temp3, int humedad1, int humedad2, int humedad3)

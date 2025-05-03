@@ -32,6 +32,11 @@ namespace ENT
         {
         }
 
+        public clsInvernadero(int idInvernadero)
+        {
+            this.idInvernadero = idInvernadero;
+        }
+
         public clsInvernadero(int idInvernadero, string nombre)
         {
             this.idInvernadero = idInvernadero;

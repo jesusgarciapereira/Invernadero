@@ -19,6 +19,11 @@ ENT
         {
         }
 
+		public clsInvernadero(int idInvernadero)
+        {
+            this.idInvernadero = idInvernadero;
+        }
+
         public clsInvernadero(int idInvernadero, string nombre)
         {
             this.idInvernadero = idInvernadero;
@@ -86,7 +91,13 @@ ENT
 
 		public clsTemperatura()
         {
-			this.fecha = DateTime.Now;
+			this.fecha = DateTime.Now; // Creo que no
+        }
+
+		public clsTemperatura(int idInvernadero, DateTime fecha)
+        {
+            this.idInvernadero = idInvernadero;
+            this.fecha = fecha;
         }
 
         public clsTemperatura(int idInvernadero, DateTime fecha, double temp1, double temp2, double temp3, int humedad1, int humedad2, int humedad3)
@@ -102,36 +113,6 @@ ENT
         }		
 	}
 
-DAL
-	clsListadosInvernaderosDAL{
-		public static List<clsInvernadero> ObtenerListadoInvernaderosDAL(){
-			// TODO: Llama a la lista de invernaderos de la Base de Datos
-		}
-		public static clsInvernadero ObtenerInvernaderoPorIdDAL(int id){ // Creo que me hará falta para obtener el nombre
-			// TODO: Obtén de la Base de Datos el invernadero correspondiente al id del parámetro
-		}
-	}
-
-	clsListadosTemperaturasDAL{
-		public static List<clsTemperatura> ObtenerListadoTemperaturasDAL(){
-			// TODO: Llama a la lista de temperaturas de la Base de Datos
-		}
-	
-	}
-
-	clsListadosLuchadoresConPuntuacionTotalDAL{
-		public static List<clsLuchadorConPuntuacionTotal> ObtenerListadoLuchadoresConPuntuacionTotalDAL(){
-			// TODO: Llama a la lista de luchadoresConPuntuacionTotal de la Base de Datos
-		}
-	}
-
-
-	Conexion
-		clsMyConnection{
-		}
-
-BL
-
 DTO
 	clsTemperaturaConNombreInvernadero : clsTemperatura{ // ¿hereda? creo que sí
 			private string nombreInvernadero;
@@ -146,12 +127,75 @@ DTO
 			    
 			}
 
+			// Creo que este no hace falta
+			public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura) : base(// TODO: todos los datos de la temperatura)
+			{
+
+			}
+	
 			public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
 			{
 			    this.nombreInvernadero = nombreInvernadero;
 			}
 		}
 	}
+
+DAL
+	clsListadosInvernaderosDAL{
+		public static List<clsInvernadero> ObtenerListadoInvernaderosDAL(){
+			// TODO: Llama a la lista de invernaderos de la Base de Datos
+		}
+		public static clsInvernadero ObtenerInvernaderoPorIdDAL(int id){ // Creo que me hará falta para obtener el nombre (¿o eso será en clsListadosLuchadoresConPuntuacionTotalDAL?)
+			// TODO: Obtén de la Base de Datos el invernadero correspondiente al id del parámetro
+		}
+	}
+
+	clsListadosTemperaturasDAL{
+		public static List<clsTemperatura> ObtenerListadoTemperaturasDAL(){
+			// TODO: Llama a la lista de temperaturas de la Base de Datos
+		}
+	
+	}
+
+	clsListadosTemperaturaConNombreInvernaderoDAL{
+		public static List<clsTemperaturaConNombreInvernadero> ObtenerListadoTemperaturasConNombreInvernaderoDAL(){
+			// TODO: Llama a la lista de temperaturaConNombreInvernadero de la Base de Datos
+		}
+		public static clsTemperaturaConNombreInvernadero ObtenerTemperaturaConNombreInvernaderoPorPKDAL(int idInvernadero, DateTime fecha){ // Creo que me hará falta para obtenerlo
+			// TODO: Obtén de la Base de Datos el invernadero correspondiente a los PK del parámetro
+		}
+	}
+
+
+	Conexion
+		clsMyConnection{
+		}
+
+BL
+	clsListadosInvernaderosBL{
+		public static List<clsInvernadero> ObtenerListadoInvernaderosBL()
+		{
+			return clsListadosInvernaderosDAL.ObtenerListadoInvernaderosDAL();
+		}
+	}
+
+	clsListadosTemperaturasBL{
+		public static List<clsTemperatura> ObtenerListadoCombatesBL()
+		{
+			return clsListadosTemperaturasDAL.ObtenerListadoTemperaturasDAL();
+		}
+	
+	}
+
+	clsListadosTemperaturaConNombreInvernaderoBL{
+		public static List<clsTemperaturaConNombreInvernadero> ObtenerListadoTemperaturasConNombreInvernaderoBL()
+		{
+			return clsListadosTemperaturaConNombreInvernaderoDAL.ObtenerListadoTemperaturasConNombreInvernaderoDAL();
+		}
+	}
+
+
+
 
 MAUI
 	VM
@@ -237,6 +281,9 @@ MAUI
 			    this.nombreInvernadero = nombreInvernadero;
 			}
 		}
+	Views
+		Vista para la seleccion de Invernadero
+		Vista para el invernadero seleccionado
 
 ASP
 	TODO: Después de Feria
