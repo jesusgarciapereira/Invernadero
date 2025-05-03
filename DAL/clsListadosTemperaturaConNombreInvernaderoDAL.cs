@@ -30,7 +30,7 @@ namespace DAL
             List<clsTemperaturaConNombreInvernadero> listadoCompletoTemperaturasConNombreInvernadero = new List<clsTemperaturaConNombreInvernadero>();
             clsTemperaturaConNombreInvernadero temperaturaConNombreInvernadero;
             clsTemperatura temperatura;
-            string nombreInvernadero = "";
+            string nombreInvernadero = "(Sin nombre)";
 
             try
             {
@@ -97,6 +97,9 @@ namespace DAL
                         temperaturaConNombreInvernadero = new clsTemperaturaConNombreInvernadero(temperatura, nombreInvernadero);
 
                         listadoCompletoTemperaturasConNombreInvernadero.Add(temperaturaConNombreInvernadero);
+
+                        // Por si se diera el caso hipotético de que algún nombreInvernadero fuera null, esto evita usar un nombre tomado anteriormente
+                        nombreInvernadero = "(Sin nombre)";
                     }
                 }
                 // Cierra el lector de datos (importante para liberar recursos)
