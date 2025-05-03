@@ -29,7 +29,7 @@ ENT
 	clsTemperatura{
 		private int idInvernadero;
 		private DateTime fecha;
-		private double temp1; // Sólo una decimal (ºC)
+		private double temp1; // Sólo una cifra decimal (ºC)
 		private double temp2;
 		private double temp3;
 		private int humedad1; // Un porcentaje
@@ -45,7 +45,7 @@ ENT
 		public DateTime Fecha
 		{
 			get {return fecha;}
-			set {idInvernadero = fecha;} // Puede que sí o puede que no
+			set {fecha = value;} // Puede que sí o puede que no
 		}
 
 		public double Temp1
@@ -89,7 +89,7 @@ ENT
 			this.fecha = DateTime.Now;
         }
 
-        public clsTemperatura(int idInvernadero, DateTime fecha, int temp1, int temp2, int temp3, double humedad1, double humedad2, double humedad3)
+        public clsTemperatura(int idInvernadero, DateTime fecha, double temp1, double temp2, double temp3, int humedad1, int humedad2, int humedad3)
         {
             this.idInvernadero = idInvernadero;
 			this.fecha = fecha;
@@ -103,8 +103,52 @@ ENT
 	}
 
 DAL
+	clsListadosInvernaderosDAL{
+		public static List<clsInvernadero> ObtenerListadoInvernaderosDAL(){
+			// TODO: Llama a la lista de invernaderos de la Base de Datos
+		}
+	}
+
+	clsListadosTemperaturasDAL{
+		public static List<clsTemperatura> ObtenerListadoTemperaturasDAL(){
+			// TODO: Llama a la lista de temperaturas de la Base de Datos
+		}
+	
+	}
+
+	clsListadosLuchadoresConPuntuacionTotalDAL{
+		public static List<clsLuchadorConPuntuacionTotal> ObtenerListadoLuchadoresConPuntuacionTotalDAL(){
+			// TODO: Llama a la lista de luchadoresConPuntuacionTotal de la Base de Datos
+		}
+	}
+
+
+	Conexion
+		clsMyConnection{
+		}
 
 BL
+
+DTO
+	clsTemperaturaConNombreInvernadero : clsTemperatura{ // ¿hereda? creo que sí
+			private string nombreInvernadero;
+
+			public string NombreInvernadero
+			{
+			    get { return nombreInvernadero; }
+			}
+
+			public clsTemperaturaConNombreInvernadero() 
+			{
+			    
+			}
+
+			public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
+			{
+			    this.nombreInvernadero = nombreInvernadero;
+			}
+		}
+	}
 
 MAUI
 	VM
@@ -172,7 +216,7 @@ MAUI
 		}
 
 		// Para la página 2 // Si quieres esto ponlo como DTO para que te valga para ASP, quizás no lo haga porque este VM es sencillo
-		clsTemperaturasConNombreInvernaderoVM : clsTemperatura{ // ¿hereda?
+		clsInvernaderoSeleccionadoVM : clsTemperatura{ // ¿hereda? aquí creo que no
 			private string nombreInvernadero;
 
 			public string NombreInvernadero
@@ -180,12 +224,12 @@ MAUI
 			    get { return nombreInvernadero; }
 			}
 
-			public clsTemperaturasConNombreInvernaderoVM() 
+			public clsInvernaderoSeleccionadoVM() 
 			{
 			    
 			}
 
-			public clsLuchadorConPuntuacionTotal(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
+			public clsInvernaderoSeleccionadoVM(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
 			{
 			    this.nombreInvernadero = nombreInvernadero;
 			}
