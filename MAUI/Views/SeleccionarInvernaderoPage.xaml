@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI.VM"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="MAUI.Views.SeleccionarInvernaderoPage"
+             Title="Seleccionar Invernadero">
+
+    <ContentPage.BindingContext>
+        <vm:clsSeleccionarInvernaderoVM />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20" Spacing="25">
+
+        <!-- Título -->
+        <Label Text="Selecciona un invernadero y una fecha"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <!-- Picker de invernaderos -->
+        <Picker Title="Invernaderos"
+                ItemsSource="{Binding ListadoInvernaderos}"
+                ItemDisplayBinding="{Binding Nombre}"
+                SelectedItem="{Binding InvernaderoElegido}" />
+
+        <!-- Selector de fecha -->
+        <DatePicker Date="{Binding FechaSeleccionada}"
+                    MaximumDate="{x:Static sys:DateTime.Now}"
+                    Format="dd/MM/yyyy" />
+
+        <!-- Botón Ver -->
+        <Button Text="Ver temperaturas"
+                Command="{Binding BotonVer}"
+                BackgroundColor="LightGreen"
+                TextColor="Black" />
+
+    </StackLayout>
+</ContentPage>

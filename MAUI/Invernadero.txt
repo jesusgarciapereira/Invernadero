@@ -180,10 +180,10 @@ BL
 	}
 
 	clsListadosTemperaturasBL{
-		public static List<clsTemperatura> ObtenerListadoCombatesBL()
-		{
-			return clsListadosTemperaturasDAL.ObtenerListadoTemperaturasDAL();
-		}
+		public static List<clsTemperatura> ObtenerListadoTemperaturasBL()
+        {
+            return clsListadosTemperaturasDAL.ObtenerListadoTemperaturasDAL();
+        }
 	
 	}
 
@@ -193,9 +193,6 @@ BL
 			return clsListadosTemperaturaConNombreInvernaderoDAL.ObtenerListadoTemperaturasConNombreInvernaderoDAL();
 		}
 	}
-
-
-
 
 MAUI
 	VM
