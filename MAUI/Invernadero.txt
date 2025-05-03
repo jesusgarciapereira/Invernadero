@@ -107,6 +107,9 @@ DAL
 		public static List<clsInvernadero> ObtenerListadoInvernaderosDAL(){
 			// TODO: Llama a la lista de invernaderos de la Base de Datos
 		}
+		public static clsInvernadero ObtenerInvernaderoPorIdDAL(int id){ // Creo que me hará falta para obtener el nombre
+			// TODO: Obtén de la Base de Datos el invernadero correspondiente al id del parámetro
+		}
 	}
 
 	clsListadosTemperaturasDAL{
