@@ -1,6 +1,10 @@
-﻿using BL;
+﻿
+using BL;
+using DTO;
 using ENT;
+using MAUI.Views;
 using MAUI.VM.Utils;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +17,7 @@ namespace MAUI.VM
     {
         #region Atributos
         private List<clsInvernadero> listadoInvernaderos;
-        private clsInvernadero invernaderoElegido;
+        private clsInvernadero invernaderoSeleccionado;
         private DateTime fechaSeleccionada;
         private DelegateCommand botonVer;
         #endregion
@@ -24,12 +28,12 @@ namespace MAUI.VM
             get { return listadoInvernaderos; }
         }
 
-        public clsInvernadero InvernaderoElegido
+        public clsInvernadero InvernaderoSeleccionado
         {
-            get { return invernaderoElegido; }
+            get { return invernaderoSeleccionado; }
             set
             {
-                invernaderoElegido = value;
+                invernaderoSeleccionado = value;
                 botonVer.RaiseCanExecuteChanged();
             }
         }
@@ -54,11 +58,23 @@ namespace MAUI.VM
 
         public clsSeleccionarInvernaderoVM()
         {
-            listadoInvernaderos = clsListadosInvernaderosBL.ObtenerListadoInvernaderosBL();
-            fechaSeleccionada = DateTime.Now; // Inicialmente es la fecha actual, como pide el ejercicio
-            botonVer = new DelegateCommand(verExecute
-                //, habilitarVer
-                );
+            botonVer = new DelegateCommand(verExecute, habilitarVer);
+
+            try
+            {
+                listadoInvernaderos = clsListadosInvernaderosBL.ObtenerListadoInvernaderosBL();
+                // Para que aparezca el primero, en la lista de invernaderos
+                listadoInvernaderos.Insert(0, new clsInvernadero(0, "--- Seleccione un Invernadero ---"));
+
+                // Seleccionados originalmente
+                invernaderoSeleccionado = listadoInvernaderos[0];
+                fechaSeleccionada = DateTime.Now; // Inicialmente es la fecha actual, como pide el ejercicio
+      
+            }
+            catch (SqlException ex) 
+            {
+                muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
+            }
         }
         #endregion
 
@@ -67,20 +83,52 @@ namespace MAUI.VM
         {
             await Application.Current.MainPage.DisplayAlert(titulo, cuerpo, boton);
         }
+
+        private async void enviaDatosNavigation(clsTemperaturaConNombreInvernadero temperaturasConNombreInvernadero) 
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new InvernaderoSeleccionadoPage(temperaturasConNombreInvernadero));
+        }
+
         #endregion
 
         #region Comandos
         private void verExecute()
         {
-            // TODO: Acciones y mensajes necesarios para ver el Invernadero
+            clsTemperaturaConNombreInvernadero temperaturasConNombreInvernadero;
+
+            try
+            {
+                temperaturasConNombreInvernadero = clsListadosTemperaturaConNombreInvernaderoBL.ObtenerTemperaturasConNombreInvernaderoPorPKBL
+                    (invernaderoSeleccionado.IdInvernadero, fechaSeleccionada);
+
+                if (temperaturasConNombreInvernadero != null)
+                {
+                    enviaDatosNavigation(temperaturasConNombreInvernadero);
+                }
+                else
+                {
+                    muestraMensaje("Sin datos", "No se encontraron temperaturas correspondientes a la fecha e invernadero seleccionados", "OK");                 
+                }
+            }
+            catch (SqlException ex)
+            {
+                muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
+
+            }
         }
 
+        private bool habilitarVer()
+        {
+            bool habilitado = false;
 
-        //private bool habilitarVer()
-        //{
-        //    // TODO: Acciones necesarias para habilitar el Boton
+            if (invernaderoSeleccionado != null && invernaderoSeleccionado.IdInvernadero > 0 && fechaSeleccionada <= DateTime.Now)
+            {
+                habilitado = true;
+            }
 
-        //}
+            return habilitado;
+
+        }
         #endregion
     }
 }

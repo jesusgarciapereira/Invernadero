@@ -75,10 +75,6 @@ namespace DAL
             // Devuelve la lista completa de luchadores obtenida de la base de datos
             return listadoCompletoInvernaderos;
         }
-        //public static clsInvernadero ObtenerInvernaderoPorIdDAL(int id)
-        //{ // Creo que me hará falta para obtener el nombre (¿o eso será en clsListadosLuchadoresConPuntuacionTotalDAL?)
-        //  // TODO: Obtén de la Base de Datos el invernadero correspondiente al id del parámetro
-        //}
 
         #endregion
 

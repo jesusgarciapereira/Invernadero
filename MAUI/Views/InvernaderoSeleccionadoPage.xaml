@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI.VM"
+             x:Class="MAUI.Views.InvernaderoSeleccionadoPage"
+             Title="Temperaturas del Invernadero">
+
+    <!-- Aquí agregamos un ScrollView para asegurar que el contenido sea accesible en dispositivos con pantallas pequeñas -->
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Temperaturas Registradas"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <!-- Aquí tenemos la vista con la información del invernadero y sus temperaturas -->
+            <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+
+                    <!-- Nombre del invernadero -->
+                    <Label Text="{Binding TemperaturasDeInvernadero.NombreInvernadero}" 
+                           FontSize="20" 
+                           FontAttributes="Bold" />
+
+                    <!-- Fecha de las temperaturas -->
+                    <Label Text="{Binding TemperaturasDeInvernadero.Fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}"
+                           FontSize="18" />
+
+                    <!-- Temperaturas -->
+                    <Label Text="{Binding TemperaturasDeInvernadero.Temp1, StringFormat='Temperatura 1: {0} ºC'}"
+                           FontSize="16" />
+
+                    <Label Text="{Binding TemperaturasDeInvernadero.Temp2, StringFormat='Temperatura 2: {0} ºC'}"
+                           FontSize="16" />
+
+                    <Label Text="{Binding TemperaturasDeInvernadero.Temp3, StringFormat='Temperatura 3: {0} ºC'}"
+                           FontSize="16" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

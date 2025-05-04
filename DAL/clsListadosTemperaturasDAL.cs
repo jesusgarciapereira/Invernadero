@@ -51,23 +51,23 @@ namespace DAL
                         // Los cast son necesarios porque el lector devuelve objetos
                         temperatura = new clsTemperatura(
                             (int)miLector["idInvernadero"],
-                            DateTime.Parse((string)miLector["fecha"])
+                            (DateTime)miLector["fecha"]
                             );
 
                         // Asigna las temp y humedades, verificando primero que no sea NULL en la BD
                         if (miLector["temp1"] != DBNull.Value)
                         {
-                            temperatura.Temp1 = (double)miLector["temp1"];
+                            temperatura.Temp1 = (double)(decimal)miLector["temp1"];
                         }
 
                         if (miLector["temp2"] != DBNull.Value)
                         {
-                            temperatura.Temp2 = (double)miLector["temp2"];
+                            temperatura.Temp2 = (double)(decimal)miLector["temp2"];
                         }
 
                         if (miLector["temp3"] != DBNull.Value)
                         {
-                            temperatura.Temp3 = (double)miLector["temp3"];
+                            temperatura.Temp3 = (double)(decimal)miLector["temp3"];
                         }
 
                         if (miLector["humedad1"] != DBNull.Value)

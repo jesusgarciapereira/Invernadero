@@ -280,7 +280,7 @@ MAUI
 		}
 	Views
 		Vista para la seleccion de Invernadero
-		Vista para el invernadero seleccionado
+		Vista para el invernadero seleccionado con la fecha seleccionada
 
 ASP
-	TODO: Después de Feria
+	// TODO: Después de Feria

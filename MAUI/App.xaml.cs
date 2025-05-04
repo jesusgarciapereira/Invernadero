@@ -1,4 +1,6 @@
-﻿namespace MAUI
+﻿using MAUI.Views;
+
+namespace MAUI
 {
     public partial class App : Application
     {
@@ -6,7 +8,11 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            // Antes:
+            // MainPage = new MainPage();
+
+            // Ahora:
+            MainPage = new NavigationPage(new SeleccionarInvernaderoPage());
         }
     }
 }

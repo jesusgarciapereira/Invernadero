@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MAUI.VM"
-             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              x:Class="MAUI.Views.SeleccionarInvernaderoPage"
              Title="Seleccionar Invernadero">
-
+    <!--xmlns:sys="clr-namespace:System;assembly=System.Runtime" es Para que reconozca el DateTime-->
+    <!--MaximumDate="{x:Static sys:DateTime.Now} esto iría en el DatePicker-->
+    <!--Pero no lo usaré aquí-->
+    
     <ContentPage.BindingContext>
         <vm:clsSeleccionarInvernaderoVM />
     </ContentPage.BindingContext>
@@ -21,11 +23,10 @@
         <Picker Title="Invernaderos"
                 ItemsSource="{Binding ListadoInvernaderos}"
                 ItemDisplayBinding="{Binding Nombre}"
-                SelectedItem="{Binding InvernaderoElegido}" />
+                SelectedItem="{Binding InvernaderoSeleccionado}" />
 
         <!-- Selector de fecha -->
         <DatePicker Date="{Binding FechaSeleccionada}"
-                    MaximumDate="{x:Static sys:DateTime.Now}"
                     Format="dd/MM/yyyy" />
 
         <!-- Botón Ver -->
