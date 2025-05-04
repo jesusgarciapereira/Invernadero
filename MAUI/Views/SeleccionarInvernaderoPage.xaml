@@ -15,8 +15,8 @@
     <StackLayout Padding="20" Spacing="25">
 
         <!-- Título -->
-        <Label Text="Selecciona un invernadero y una fecha"
-               FontSize="Medium"
+        <Label Text="Seleccione un invernadero y una fecha"
+               FontSize="Large"
                HorizontalOptions="Center" />
 
         <!-- Picker de invernaderos -->

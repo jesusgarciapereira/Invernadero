@@ -13,5 +13,6 @@ public partial class InvernaderoSeleccionadoPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new InvernaderoSeleccionadoVM(temperaturasConNombreInvernadero);
+
     }
 }

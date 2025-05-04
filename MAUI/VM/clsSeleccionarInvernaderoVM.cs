@@ -107,7 +107,10 @@ namespace MAUI.VM
                 }
                 else
                 {
-                    muestraMensaje("Sin datos", "No se encontraron temperaturas correspondientes a la fecha e invernadero seleccionados", "OK");                 
+                    muestraMensaje("Sin datos" 
+                        , "No se encontraron temperaturas correspondientes a la fecha e invernadero seleccionados " +
+                        "\n\nPista: Todos los invernaderos tienen registros de temperatura desde el 29 de Abril hasta el 5 de Mayo de 2025"
+                        , "OK");                 
                 }
             }
             catch (SqlException ex)

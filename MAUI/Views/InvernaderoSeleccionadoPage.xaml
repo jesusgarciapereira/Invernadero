@@ -1,46 +1,74 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MAUI.VM"
              x:Class="MAUI.Views.InvernaderoSeleccionadoPage"
              Title="Temperaturas del Invernadero">
 
-    <!-- Aquí agregamos un ScrollView para asegurar que el contenido sea accesible en dispositivos con pantallas pequeñas -->
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <!-- Título de la página -->
             <Label Text="Temperaturas Registradas"
-                   FontSize="24"
+                   FontSize="Large"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <!-- Aquí tenemos la vista con la información del invernadero y sus temperaturas -->
             <Frame BorderColor="Gray" Padding="15" CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
 
-                    <!-- Nombre del invernadero -->
                     <Label Text="{Binding TemperaturasDeInvernadero.NombreInvernadero}" 
                            FontSize="20" 
-                           FontAttributes="Bold" />
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
 
-                    <!-- Fecha de las temperaturas -->
-                    <Label Text="{Binding TemperaturasDeInvernadero.Fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}"
-                           FontSize="18" />
+                    <Label Text="{Binding TemperaturasDeInvernadero.Fecha, StringFormat='{0:dd/MM/yyyy}'}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
 
-                    <!-- Temperaturas -->
-                    <Label Text="{Binding TemperaturasDeInvernadero.Temp1, StringFormat='Temperatura 1: {0} ºC'}"
-                           FontSize="16" />
+                    <!-- Grid layout -->
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto,*,Auto,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="20" RowSpacing="10">
 
-                    <Label Text="{Binding TemperaturasDeInvernadero.Temp2, StringFormat='Temperatura 2: {0} ºC'}"
-                           FontSize="16" />
+                        <!-- Fila de encabezados (combinamos columnas para centrar los títulos sobre cada par) -->
+                        <Label Grid.Row="0" Grid.Column="0" />
+                        <!-- Vacía para la columna de títulos (Temperatura, Humedad) -->
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Hora:" FontSize="18" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="08:00" FontSize="18" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="16:00" FontSize="18" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="24:00" FontSize="18" FontAttributes="Bold" />
 
-                    <Label Text="{Binding TemperaturasDeInvernadero.Temp3, StringFormat='Temperatura 3: {0} ºC'}"
-                           FontSize="16" />
+                        <!-- Fila de Temperatura -->
+                        <Label Grid.Row="1" Grid.Column="0" Text="Temperatura:" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" />
+
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding TemperaturasDeInvernadero.Temp1, StringFormat='{0}ºC', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="1" Grid.Column="2" Progress="{Binding ProgessTemp1}" HeightRequest="10" VerticalOptions="Center" />
+
+                        <Label Grid.Row="1" Grid.Column="3" Text="{Binding TemperaturasDeInvernadero.Temp2, StringFormat='{0}ºC', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="1" Grid.Column="4" Progress="{Binding ProgessTemp2}" HeightRequest="10" VerticalOptions="Center" />
+
+                        <Label Grid.Row="1" Grid.Column="5" Text="{Binding TemperaturasDeInvernadero.Temp3, StringFormat='{0}ºC', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="1" Grid.Column="6" Progress="{Binding ProgessTemp3}" HeightRequest="10" VerticalOptions="Center" />
+
+                        <!-- Fila de Humedad -->
+                        <Label Grid.Row="2" Grid.Column="0" Text="Humedad:" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" />
+
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding TemperaturasDeInvernadero.Humedad1, StringFormat='{0}%', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="2" Grid.Column="2" Progress="{Binding ProgessHumedad1}" HeightRequest="10" VerticalOptions="Center" />
+
+                        <Label Grid.Row="2" Grid.Column="3" Text="{Binding TemperaturasDeInvernadero.Humedad2, StringFormat='{0}%', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="2" Grid.Column="4" Progress="{Binding ProgessHumedad2}" HeightRequest="10" VerticalOptions="Center" />
+
+                        <Label Grid.Row="2" Grid.Column="5" Text="{Binding TemperaturasDeInvernadero.Humedad3, StringFormat='{0}%', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="2" Grid.Column="6" Progress="{Binding ProgessHumedad3}" HeightRequest="10" VerticalOptions="Center" />
+
+                    </Grid>
 
                 </VerticalStackLayout>
             </Frame>
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+
+
+
+
+
