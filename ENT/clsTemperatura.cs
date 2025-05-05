@@ -11,6 +11,7 @@ namespace ENT
         #region Atributos
         private int idInvernadero;
         private DateTime fecha;
+        // Necesito que todos estos acepten un posible null
         private double? temp1; // Sólo una cifra decimal (ºC)
         private double? temp2;
         private double? temp3;
@@ -23,13 +24,13 @@ namespace ENT
         public int IdInvernadero
         {
             get { return idInvernadero; }
-            set { idInvernadero = value; } // Puede que sí o puede que no
+            //set { idInvernadero = value; } // Puede que sí o puede que no
         }
 
         public DateTime Fecha
         {
             get { return fecha; }
-            set { fecha = value; } // Puede que sí o puede que no
+            //set { fecha = value; } // Puede que sí o puede que no
         }
 
         public double? Temp1
@@ -72,7 +73,7 @@ namespace ENT
         #region Constructores
         public clsTemperatura()
         {
-            this.fecha = DateTime.Now; // Creo que no
+            // this.fecha = DateTime.Now; // Creo que aquí no, sino en fechaSeleccionada del VM
         }
 
         public clsTemperatura(int idInvernadero, DateTime fecha)

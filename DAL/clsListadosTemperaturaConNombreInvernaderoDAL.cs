@@ -118,9 +118,6 @@ namespace DAL
             return listadoCompletoTemperaturasConNombreInvernadero;
         }
 
-
-
-
         /// <summary>
         /// Obtiene las Temperaturas con el nombre del Invernadero correspondiente las PK que se le pasa por parámetro
         /// </summary>

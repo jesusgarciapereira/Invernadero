@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MAUI.VM
 {
-    public class clsSeleccionarInvernaderoVM
+    public class clsSeleccionarInvernaderoVM // Creo que no hereda, pues no hereda
     {
         #region Atributos
         private List<clsInvernadero> listadoInvernaderos;
@@ -79,11 +79,21 @@ namespace MAUI.VM
         #endregion
 
         #region Métodos
+        /// <summary>
+        /// Muestra un mensaje emergente.
+        /// </summary>
+        /// <param name="titulo">Título del mensaje.</param>
+        /// <param name="cuerpo">Cuerpo del mensaje.</param>
+        /// <param name="boton">Texto del botón de cierre.</param>
         private async void muestraMensaje(string titulo, string cuerpo, string boton)
         {
             await Application.Current.MainPage.DisplayAlert(titulo, cuerpo, boton);
         }
 
+        /// <summary>
+        /// Navega hacia la página de invernadero seleccionado pasando el objeto del parámetro.
+        /// </summary>
+        /// <param name="temperaturasConNombreInvernadero">Objeto de tipo clsTemperaturaConNombreInvernadero que recibirá la nueva página</param>
         private async void enviaDatosNavigation(clsTemperaturaConNombreInvernadero temperaturasConNombreInvernadero) 
         {
             await Application.Current.MainPage.Navigation.PushAsync(new InvernaderoSeleccionadoPage(temperaturasConNombreInvernadero));
@@ -92,6 +102,9 @@ namespace MAUI.VM
         #endregion
 
         #region Comandos
+        /// <summary>
+        /// Método asociado al execute del comando botonVer que navega a la página de invernadero seleccionado
+        /// </summary>
         private void verExecute()
         {
             clsTemperaturaConNombreInvernadero temperaturasConNombreInvernadero;
@@ -120,6 +133,10 @@ namespace MAUI.VM
             }
         }
 
+        /// <summary>
+        /// Método asociado al canExecute del comando botonVer que habilita o deshabilita el botón de Ver.
+        /// </summary>
+        /// <returns>True si se ha seleccionado un invernadero válido y la fecha seleccionada no es superior a la fecha actual, false en caso contrario.</returns>
         private bool habilitarVer()
         {
             bool habilitado = false;

@@ -17,7 +17,7 @@ namespace ENT
         public int IdInvernadero
         {
             get { return idInvernadero; }
-            set { idInvernadero = value; } // Puede que sí o puede que no
+            // set { idInvernadero = value; } // Puede que sí o puede que no
         }
 
         public string Nombre

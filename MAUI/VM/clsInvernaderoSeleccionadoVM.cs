@@ -11,6 +11,7 @@ namespace MAUI.VM
     {
         #region Atributos
         private clsTemperaturaConNombreInvernadero temperaturasDeInvernadero;
+        // Los necesito para hacer el Binding con cada ProgressBar
         private double progessTemp1;
         private double progessTemp2;
         private double progessTemp3;
@@ -61,9 +62,10 @@ namespace MAUI.VM
         {
             this.temperaturasDeInvernadero = temperaturasDeInvernadero;
 
+            // Tienen cast explícitos porque las emperaturas y las humedades pueden ser null
             if (temperaturasDeInvernadero.Temp1 != null)
             {
-                this.progessTemp1 = (double)temperaturasDeInvernadero.Temp1 / 50.0;
+                this.progessTemp1 = (double)(temperaturasDeInvernadero.Temp1 / 50.0);
             }
 
             if (temperaturasDeInvernadero.Temp2 != null)
@@ -90,9 +92,6 @@ namespace MAUI.VM
             {
                 this.progessHumedad3 = (double)temperaturasDeInvernadero.Humedad3 / 100.0;
             }
-
-            
-
         }
         #endregion
     }

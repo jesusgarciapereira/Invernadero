@@ -1,142 +1,144 @@
 ENT
 	clsInvernadero{
+		
 		private int idInvernadero;
 		private string nombre;
-
+		
 		public int IdInvernadero
 		{
-			get {return idInvernadero;}
-			set {idInvernadero = value;} // Puede que sí o puede que no
+		    get { return idInvernadero; }
+		    // set { idInvernadero = value; } // Puede que sí o puede que no
 		}
-
 		public string Nombre
 		{
-			get {return nombre;}
-			set {nombre = value;}
+		    get { return nombre; }
+		    set { nombre = value; }
 		}
-
+		
 		public clsInvernadero()
-        {
-        }
-
+		{
+		}
 		public clsInvernadero(int idInvernadero)
-        {
-            this.idInvernadero = idInvernadero;
-        }
-
-        public clsInvernadero(int idInvernadero, string nombre)
-        {
-            this.idInvernadero = idInvernadero;
-			this.nombre = nombre;
-        }
+		{
+		    this.idInvernadero = idInvernadero;
+		}
+		public clsInvernadero(int idInvernadero, string nombre)
+		{
+		    this.idInvernadero = idInvernadero;
+		    this.nombre = nombre;
+		}
 	}
 
 	clsTemperatura{
+
 		private int idInvernadero;
 		private DateTime fecha;
-		private double temp1; // Sólo una cifra decimal (ºC)
-		private double temp2;
-		private double temp3;
-		private int humedad1; // Un porcentaje
-		private int humedad2;
-		private int humedad3;
+		// Necesito que todos estos acepten un posible null
+		private double? temp1; // Sólo una cifra decimal (ºC)
+		private double? temp2;
+		private double? temp3;
+		private int? humedad1; // Un porcentaje
+		private int? humedad2;
+		private int? humedad3;
 
 		public int IdInvernadero
 		{
-			get {return idInvernadero;}
-			set {idInvernadero = value;} // Puede que sí o puede que no
+		    get { return idInvernadero; }
+		    // set { idInvernadero = value; } // Puede que sí o puede que no
 		}
-
+		
 		public DateTime Fecha
 		{
-			get {return fecha;}
-			set {fecha = value;} // Puede que sí o puede que no
+		    get { return fecha; }
+		    // set { fecha = value; } // Puede que sí o puede que no
 		}
-
-		public double Temp1
+		
+		public double? Temp1
 		{
-			get {return temp1;}
-			set {temp1 = value;} 
+		    get { return temp1; }
+		    set { temp1 = value; }
 		}
-
-		public double Temp2
+		
+		public double? Temp2
 		{
-			get {return temp2;}
-			set {temp2 = value;} 
+		    get { return temp2; }
+		    set { temp2 = value; }
 		}
-
-		public double Temp3
+		
+		public double? Temp3
 		{
-			get {return temp3;}
-			set {temp3 = value;} 
+		    get { return temp3; }
+		    set { temp3 = value; }
 		}
-
-		public int Humedad1
+		
+		public int? Humedad1
 		{
-			get {return humedad1;}
-			set {humedad1 = value;} 
+		    get { return humedad1; }
+		    set { humedad1 = value; }
 		}
-
-		public int Humedad2
+		
+		public int? Humedad2
 		{
-			get {return humedad2;}
-			set {humedad2 = value;} 
+		    get { return humedad2; }
+		    set { humedad2 = value; }
 		}
-
-		public int Humedad3
+		
+		public int? Humedad3
 		{
-			get {return humedad3;}
-			set {humedad3 = value;} 
+		    get { return humedad3; }
+		    set { humedad3 = value; }
 		}
 
 		public clsTemperatura()
-        {
-			this.fecha = DateTime.Now; // Creo que no
-        }
-
+		{
+		    // this.fecha = DateTime.Now; // Creo que aquí no, sino en fechaSeleccionada del VM
+		}
+		
 		public clsTemperatura(int idInvernadero, DateTime fecha)
-        {
-            this.idInvernadero = idInvernadero;
-            this.fecha = fecha;
-        }
-
-        public clsTemperatura(int idInvernadero, DateTime fecha, double temp1, double temp2, double temp3, int humedad1, int humedad2, int humedad3)
-        {
-            this.idInvernadero = idInvernadero;
-			this.fecha = fecha;
-			this.temp1 = temp1;
-			this.temp2 = temp2;
-			this.temp3 = temp3;
-			this.humedad1 = humedad1;
-			this.humedad2 = humedad2;
-			this.humedad3 = humedad3;
-        }		
+		{
+		    this.idInvernadero = idInvernadero;
+		    this.fecha = fecha;
+		}
+		
+		public clsTemperatura(int idInvernadero, DateTime fecha, double? temp1, double? temp2, double? temp3, int? humedad1, int? humedad2, int? humedad3)
+		{
+		    this.idInvernadero = idInvernadero;
+		    this.fecha = fecha;
+		    this.temp1 = temp1;
+		    this.temp2 = temp2;
+		    this.temp3 = temp3;
+		    this.humedad1 = humedad1;
+		    this.humedad2 = humedad2;
+		    this.humedad3 = humedad3;
+		}
 	}
 
 DTO
-	clsTemperaturaConNombreInvernadero : clsTemperatura{ // ¿hereda? creo que sí
-			private string nombreInvernadero;
+	clsTemperaturaConNombreInvernadero : clsTemperatura{ // ¿hereda? SÍ
 
-			public string NombreInvernadero
-			{
-			    get { return nombreInvernadero; }
-			}
+		private string nombreInvernadero;
 
-			public clsTemperaturaConNombreInvernadero() 
-			{
-			    
-			}
+		public string NombreInvernadero
+		{
+		    get { return nombreInvernadero; }
+		}
 
-			// Creo que este no hace falta
-			public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura) : base(// TODO: todos los datos de la temperatura)
-			{
+		public clsTemperaturaConNombreInvernadero()
+		{
+		
+		}
 
-			}
-	
-			public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
-			{
-			    this.nombreInvernadero = nombreInvernadero;
-			}
+		// Creo que este Constructor no hace falta
+		//public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura)
+		//     : base(temperatura.IdInvernadero, temperatura.Fecha, temperatura.Temp1, temperatura.Temp2, temperatura.Temp3, temperatura.Humedad1, temperatura.Humedad2, temperatura.Humedad3)
+		//{
+		
+		//}
+		
+		public clsTemperaturaConNombreInvernadero(clsTemperatura temperatura, string nombreInvernadero)
+		    : base(temperatura.IdInvernadero, temperatura.Fecha, temperatura.Temp1, temperatura.Temp2, temperatura.Temp3, temperatura.Humedad1, temperatura.Humedad2, temperatura.Humedad3)
+		{
+		    this.nombreInvernadero = nombreInvernadero;
 		}
 	}
 
@@ -145,12 +147,15 @@ DAL
 		public static List<clsInvernadero> ObtenerListadoInvernaderosDAL(){
 			// TODO: Llama a la lista de invernaderos de la Base de Datos
 		}
-		public static clsInvernadero ObtenerInvernaderoPorIdDAL(int id){ // Creo que me hará falta para obtener el nombre (¿o eso será en clsListadosLuchadoresConPuntuacionTotalDAL?)
+
+		// No es necesario en este ejercicio, no lo incluiré
+		public static clsInvernadero ObtenerInvernaderoPorIdDAL(int id){ 
 			// TODO: Obtén de la Base de Datos el invernadero correspondiente al id del parámetro
 		}
 	}
 
 	clsListadosTemperaturasDAL{
+		// No es necesario en este ejercicio pero lo incluiré para futuras ampliaciones a largo plazo
 		public static List<clsTemperatura> ObtenerListadoTemperaturasDAL(){
 			// TODO: Llama a la lista de temperaturas de la Base de Datos
 		}
@@ -158,14 +163,15 @@ DAL
 	}
 
 	clsListadosTemperaturaConNombreInvernaderoDAL{
+		// No es necesario en este ejercicio pero lo incluiré para futuras ampliaciones a largo plazo
 		public static List<clsTemperaturaConNombreInvernadero> ObtenerListadoTemperaturasConNombreInvernaderoDAL(){
 			// TODO: Llama a la lista de temperaturaConNombreInvernadero de la Base de Datos
 		}
-		public static clsTemperaturaConNombreInvernadero ObtenerTemperaturaConNombreInvernaderoPorPKDAL(int idInvernadero, DateTime fecha){ // Creo que me hará falta para obtenerlo
+
+		public static clsTemperaturaConNombreInvernadero ObtenerTemperaturaConNombreInvernaderoPorPKDAL(int idInvernadero, DateTime fecha){ 
 			// TODO: Obtén de la Base de Datos el invernadero correspondiente a los PK del parámetro
 		}
 	}
-
 
 	Conexion
 		clsMyConnection{
@@ -177,48 +183,57 @@ BL
 		{
 			return clsListadosInvernaderosDAL.ObtenerListadoInvernaderosDAL();
 		}
+		// No es necesario en este ejercicio, no lo incluiré
+		public static clsInvernadero ObtenerInvernaderoPorIdBL(int id){ 
+			return clsListadosInvernaderosDAL.ObtenerListadoInvernaderosPorIdDAL();
+		}
 	}
 
 	clsListadosTemperaturasBL{
+		// No es necesario en este ejercicio pero lo incluiré para futuras ampliaciones a largo plazo
 		public static List<clsTemperatura> ObtenerListadoTemperaturasBL()
         {
             return clsListadosTemperaturasDAL.ObtenerListadoTemperaturasDAL();
         }
-	
 	}
 
 	clsListadosTemperaturaConNombreInvernaderoBL{
+		// No es necesario en este ejercicio pero lo incluiré para futuras ampliaciones a largo plazo
 		public static List<clsTemperaturaConNombreInvernadero> ObtenerListadoTemperaturasConNombreInvernaderoBL()
 		{
 			return clsListadosTemperaturaConNombreInvernaderoDAL.ObtenerListadoTemperaturasConNombreInvernaderoDAL();
 		}
+
+		public static clsTemperaturaConNombreInvernadero ObtenerTemperaturasConNombreInvernaderoPorPKBL(int idInvernadero, DateTime fecha)
+        {
+            return clsListadosTemperaturaConNombreInvernaderoDAL.ObtenerTemperaturasConNombreInvernaderoPorPKDAL(idInvernadero, fecha);
+        }
 	}
 
 MAUI
 	VM
-		// Para la página 1. Investiga cómo hacer para que navegue porque en los apuntes está en el código behind y esto es un viewmodel, hay que decir qué ventana está abierta y que navegue en ella
-		"navigate to other page from ViewModel MAUI" sin shell
-		clsSeleccionarInvernaderoVM { // Creo que no Hereda, no hereda
+		// Para la página 1. 
+		clsSeleccionarInvernaderoVM { // Creo que no hereda, pues no hereda
 			private List<clsInvernadero> listadoInvernaderos;
-			private clsInvernadero invernaderoElegido;
+			private clsInvernadero invernaderoSeleccionado;
 			private DateTime fechaSeleccionada;
-			private DelegateCommand botonVer; ?
+			private DelegateCommand botonVer;
 			
 			public List<clsInvernadero> ListadoInvernaderos
 			{
 			    get { return listadoInvernaderos; }
 			}
-			
-			public clsInvernadero InvernaderoElegido
+
+			public clsInvernadero InvernaderoSeleccionado
 			{
-			    get { return invernaderoElegido; }
+			    get { return invernaderoSeleccionado; }
 			    set
 			    {
-			        invernaderoElegido = value;
+			        invernaderoSeleccionado = value;
 			        botonVer.RaiseCanExecuteChanged();
 			    }
 			}
-			
+
 			public DateTime FechaSeleccionada
 			{
 			    get { return fechaSeleccionada; }
@@ -228,7 +243,7 @@ MAUI
 			        botonVer.RaiseCanExecuteChanged();
 			    }
 			}
-			
+
 			public DelegateCommand BotonVer
 			{
 			    get { return botonVer; }
@@ -237,50 +252,91 @@ MAUI
 			public clsSeleccionarInvernaderoVM()
 			
 			{
-			   // TODO: Inicializa todos los Atributos necesarios y el Command
-			
+			   // TODO: Inicializa todos los Atributos necesarios y el Command			
 			}
 
 			private async void muestraMensaje(string titulo, string cuerpo, string boton)
 			{
-			    await Application.Current.MainPage.DisplayAlert(titulo, cuerpo, boton);
+			    // TODO: Mostrar un mensaje emergente.
+			}
+
+			private async void enviaDatosNavigation(clsTemperaturaConNombreInvernadero temperaturasConNombreInvernadero) 
+			{
+			    // TODO: Navegar a la siguiente página pasando el objeto del parámetro
 			}
 
 			private void verExecute()
 			{
-			    // TODO: Acciones y mensajes necesarios para ver el Invernadero
+			    // TODO: Acciones y mensajes necesarios para ver el Invernadero seleccionado
 			}
-
 
 			private bool habilitarVer()
 			{
 			    // TODO: Acciones necesarias para habilitar el Boton
-
 			}
 		}
 
-		// Para la página 2 // Si quieres esto ponlo como DTO para que te valga para ASP, quizás no lo haga porque este VM es sencillo
-		clsInvernaderoSeleccionadoVM : clsTemperatura{ // ¿hereda? aquí creo que no
-			private string nombreInvernadero;
+		// Para la página 2
+		clsInvernaderoSeleccionadoVM { // ¿hereda? aquí NO
 
-			public string NombreInvernadero
+			private clsTemperaturaConNombreInvernadero temperaturasDeInvernadero;
+			// Los necesito para hacer el Binding con cada ProgressBar
+			private double progessTemp1;
+			private double progessTemp2;
+			private double progessTemp3;
+			private double progessHumedad1;
+			private double progessHumedad2;
+			private double progessHumedad3;
+
+			public clsTemperaturaConNombreInvernadero TemperaturasDeInvernadero
 			{
-			    get { return nombreInvernadero; }
+			    get { return temperaturasDeInvernadero; }
 			}
 
-			public clsInvernaderoSeleccionadoVM() 
+			public double ProgessTemp1
 			{
-			    
+			    get { return progessTemp1; }
 			}
 
-			public clsInvernaderoSeleccionadoVM(clsTemperatura temperatura, string nombreInvernadero) : base(// TODO: todos los datos de la temperatura)
+			public double ProgessTemp2
 			{
-			    this.nombreInvernadero = nombreInvernadero;
+			    get { return progessTemp2; }
+			}
+
+			public double ProgessTemp3
+			{
+			    get { return progessTemp3; }
+			}
+
+			public double ProgessHumedad1
+			{
+			    get { return progessHumedad1; }
+			}
+
+			public double ProgessHumedad2
+			{
+			    get { return progessHumedad2; }
+			}
+
+			public double ProgessHumedad3
+			{
+			    get { return progessHumedad3; }
+			}
+
+			public InvernaderoSeleccionadoVM()
+			{
+
+			}
+
+			public InvernaderoSeleccionadoVM(clsTemperaturaConNombreInvernadero temperaturasDeInvernadero)
+			{
+			    TODO: Asigna temperaturasDeInvernadero y calcula todos los progress
 			}
 		}
+
 	Views
-		Vista para la seleccion de Invernadero
-		Vista para el invernadero seleccionado con la fecha seleccionada
+		SeleccionarInvernaderoPage // Página 1
+		InvernaderoSeleccionadoPage // Página 2
 
 ASP
-	// TODO: Después de Feria
+	// TODO: Durante la feria
