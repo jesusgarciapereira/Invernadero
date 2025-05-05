@@ -5,7 +5,7 @@
              Title="Temperaturas del Invernadero">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
 
             <Label Text="Temperaturas Registradas"
                    FontSize="Large"

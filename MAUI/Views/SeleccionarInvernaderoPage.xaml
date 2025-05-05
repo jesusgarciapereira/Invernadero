@@ -12,11 +12,12 @@
         <vm:clsSeleccionarInvernaderoVM />
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="20" Spacing="25">
+    <StackLayout Padding="20" Spacing="25" VerticalOptions="Center">
 
         <!-- Título -->
         <Label Text="Seleccione un invernadero y una fecha"
                FontSize="Large"
+               FontAttributes="Bold"
                HorizontalOptions="Center" />
 
         <!-- Picker de invernaderos -->
