@@ -24,13 +24,13 @@ namespace ENT
         public int IdInvernadero
         {
             get { return idInvernadero; }
-            //set { idInvernadero = value; } // Puede que sí o puede que no
+            set { idInvernadero = value; } // Para ASP sí lo necesito
         }
 
         public DateTime Fecha
         {
             get { return fecha; }
-            //set { fecha = value; } // Puede que sí o puede que no
+            set { fecha = value; } // Para ASP sí lo necesito
         }
 
         public double? Temp1
