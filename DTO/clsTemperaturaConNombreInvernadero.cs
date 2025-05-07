@@ -1,6 +1,7 @@
 ﻿using ENT;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace DTO
         #endregion
 
         #region Propiedades
+        [Display(Name = "Nombre")]
         public string NombreInvernadero
         {
             get { return nombreInvernadero; }

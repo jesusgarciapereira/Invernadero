@@ -10,6 +10,7 @@ namespace ASP.Models.VM
     {
         #region Atributos
         private List<clsInvernadero> listadoInvernaderos;
+        // private int idInvernaderoSeleccionado; // Lo necesito, pero lo puedo evitar con un ViewBag en el Controller
         private DateTime fechaSeleccionada;
         #endregion
 
@@ -29,6 +30,15 @@ namespace ASP.Models.VM
             }
         }
 
+        //public int IdInvernaderoSeleccionado
+        //{
+        //    get { return idInvernaderoSeleccionado; }
+        //    set
+        //    {
+        //        idInvernaderoSeleccionado = value;
+        //    }
+        //}
+
         #endregion
 
         #region Constructores
@@ -43,6 +53,7 @@ namespace ASP.Models.VM
                 listadoInvernaderos.Insert(0, new clsInvernadero(0, "--- Seleccione un Invernadero ---"));
 
                 // Seleccionados originalmente
+                // idInvernaderoSeleccionado = listadoInvernaderos[0].IdInvernadero;
                 fechaSeleccionada = DateTime.Now; // Inicialmente es la fecha actual, como pide el ejercicio
 
             }

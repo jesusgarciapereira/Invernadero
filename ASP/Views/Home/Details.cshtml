@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
-
+<!--
+<h1>Detalles</h1>
+-->
 <div>
-    <h4>clsTemperaturaConNombreInvernadero</h4>
+    <h2 class="text-center">Invernadero Seleccionado</h2>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -19,48 +19,51 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Fecha)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fecha)
+        <dd class="col-sm-10">
+            @Model.Fecha.ToString("dd/MM/yyyy")
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Temp1)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Temp1)
+        <dd class="col-sm-10">
+            @($"{Model.Temp1}ºC")
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Temp2)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Temp2)
+        <dd class="col-sm-10">
+            @($"{Model.Temp2}ºC")
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Temp3)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Temp3)
+        <dd class="col-sm-10">
+            @($"{Model.Temp3}ºC")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Humedad1)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Humedad1)
+        <dd class="col-sm-10">
+            @($"{Model.Humedad1}%")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Humedad2)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Humedad2)
+        <dd class="col-sm-10">
+            @($"{Model.Humedad2}%")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Humedad3)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Humedad3)
+        <dd class="col-sm-10">
+            @($"{Model.Humedad3}%")
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <form asp-action="Index" method="post">
+    <input type="hidden" name="idInvernadero" value="@Model.IdInvernadero" />
+    <input type="hidden" name="fecha" value="@Model.Fecha.ToString("yyyy-MM-dd")" />
+    <button type="submit" class="btn btn-primary">Seleccionar otro Invernadero</button>
+</form>
 </div>

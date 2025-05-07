@@ -1,4 +1,5 @@
-﻿@model ASP.Models.VM.clsSeleccionarInvernaderoVM
+﻿@using ENT
+@model ASP.Models.VM.clsSeleccionarInvernaderoVM
 
 @{
     ViewData["Title"] = "Seleccionar Invernadero";
@@ -10,10 +11,18 @@
 <form asp-action="Details" asp-controller="Home" method="post" class="mt-4">
     <div class="form-group">
         <label for="idInvernadero">Invernadero</label>
+
         <select class="form-control" id="idInvernadero" name="idInvernadero">
-            @foreach (var invernadero in Model.ListadoInvernaderos)
+            @foreach (clsInvernadero invernadero in Model.ListadoInvernaderos)
             {
-                <option value="@invernadero.IdInvernadero">@invernadero.Nombre</option>
+                if (ViewBag.IdInvernaderoSeleccionado != invernadero.IdInvernadero)
+                {
+                    <option value="@invernadero.IdInvernadero">@invernadero.Nombre</option>
+                }
+                else
+                {
+                    <option value="@invernadero.IdInvernadero" selected>@invernadero.Nombre</option>
+                }
             }
         </select>
     </div>

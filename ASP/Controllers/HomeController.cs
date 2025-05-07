@@ -27,6 +27,30 @@ namespace ASP.Controllers
             return View(seleccionInvernadero);
         }
 
+        [HttpPost]
+        public IActionResult Index(int idInvernadero, DateTime fecha)
+        {
+            clsSeleccionarInvernaderoVM seleccionInvernadero;
+
+            try
+            {
+                seleccionInvernadero = new clsSeleccionarInvernaderoVM();
+
+                // Asignar valores si vienen por parámetro
+
+                // seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero; Con el ViewBag, esto será innecesario
+                ViewBag.IdInvernaderoSeleccionado = idInvernadero;
+
+                seleccionInvernadero.FechaSeleccionada = fecha;
+            }
+            catch (SqlException)
+            {
+                return View("ErrorSql");
+            }
+
+            return View(seleccionInvernadero);
+        }
+
         public IActionResult Details(int idInvernadero, DateTime fecha)
         {
             clsTemperaturaConNombreInvernadero invernaderoSeleccionado;
