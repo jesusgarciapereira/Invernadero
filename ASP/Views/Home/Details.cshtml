@@ -4,6 +4,38 @@
     ViewData["Title"] = "Detalles del Invernadero";
 }
 
+<!-- Estilos CSS dentro de la vista -->
+<style>
+
+    .celda-completa {
+        border: 3px solid black;
+        text-align: center;
+    }
+
+    .celda-progress {
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+        border-right: 3px solid black;
+        text-align: center;
+    }
+
+    .celda-temperatura-humedad{
+        border: 3px solid black; 
+        text-align: center; 
+        white-space: nowrap; 
+        width: 1%;
+    }
+
+    .celda-numeros {
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+        text-align: center;
+        white-space: nowrap;
+        width: 1%;
+    }
+
+</style>
+
 <div class="container my-5">
     <h2 class="text-center mb-4">Temperaturas Registradas</h2>
 
@@ -16,59 +48,146 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th colspan="2" style="border: 3px solid black; text-align: center;">08:00</th>
-                        <th colspan="2" style="border: 3px solid black; text-align: center;">16:00</th>
-                        <th colspan="2" style="border: 3px solid black; text-align: center;">24:00</th>
+                        <th colspan="2" class="celda-completa">08:00</th>
+                        <th colspan="2" class="celda-completa">16:00</th>
+                        <th colspan="2" class="celda-completa">24:00</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th style="border: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">Temperatura</th>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">@($"{Model.Temp1}ºC")</td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; border-right: 3px solid black; text-align: center;">
+                        <th class="celda-temperatura-humedad">Temperatura</th>
+
+                        @if (Model.Temp1 != null)
+                        {
+                        <td class="celda-numeros">@($"{Model.Temp1}ºC")</td>
+                        <td class="celda-progress">
                             <!-- Barra de progreso para la temperatura 08:00 -->
                             <div class="progress" style="height: 10px;">
                                 <div class="progress-bar bg-primary" style="width: @((Model.Temp1 * 2).ToString().Replace(',', '.'))%"></div>
                             </div>
                         </td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">@($"{Model.Temp2}ºC")</td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; border-right: 3px solid black; text-align: center;">
-                            <!-- Barra de progreso para la temperatura 16:00 -->
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-primary" style="width: @((Model.Temp2 * 2).ToString().Replace(',', '.'))%"></div>
-                            </div>
-                        </td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">@($"{Model.Temp3}ºC")</td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; border-right: 3px solid black; text-align: center;">
-                            <!-- Barra de progreso para la temperatura 24:00 -->
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-primary" style="width: @((Model.Temp3 * 2).ToString().Replace(',', '.'))%"></div>
-                            </div>
-                        </td>
+                        }
+                        else
+                        {
+                            <td class="celda-numeros">?</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la temperatura 08:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        }
+
+                        @if (Model.Temp2 != null)
+                        {
+                            <td class="celda-numeros">@($"{Model.Temp2}ºC")</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la temperatura 16:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: @((Model.Temp2 * 2).ToString().Replace(',', '.'))%"></div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="celda-numeros">?</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la temperatura 16:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        }
+
+                        @if (Model.Temp3 != null)
+                        {
+                            <td class="celda-numeros">@($"{Model.Temp3}ºC")</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la temperatura 24:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: @((Model.Temp3 * 2).ToString().Replace(',', '.'))%"></div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="celda-numeros">?</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la temperatura 24:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        }
                     </tr>
+
                     <tr>
-                        <th style="border: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">Humedad</th>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">@($"{Model.Humedad1}%")</td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; border-right: 3px solid black; text-align: center;">
-                            <!-- Barra de progreso para la humedad 08:00 -->
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-info" style="width: @(Model.Humedad1)%"></div>
-                            </div>
-                        </td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">@($"{Model.Humedad2}%")</td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; border-right: 3px solid black; text-align: center;">
-                            <!-- Barra de progreso para la humedad 16:00 -->
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-info" style="width: @(Model.Humedad2)%"></div>
-                            </div>
-                        </td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; text-align: center; white-space: nowrap; width: 1%;">@($"{Model.Humedad3}%")</td>
-                        <td style="border-top: 3px solid black; border-bottom: 3px solid black; border-right: 3px solid black; text-align: center;">
-                            <!-- Barra de progreso para la humedad 24:00 -->
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-info" style="width: @(Model.Humedad3)%"></div>
-                            </div>
-                        </td>
+                        <th class="celda-temperatura-humedad">Humedad</th>
+
+                        @if (Model.Humedad1 != null)
+                        {
+                            <td class="celda-numeros">@($"{Model.Humedad1}%")</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la humedad 08:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-info" style="width: @(Model.Humedad1)%"></div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="celda-numeros">?</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la humedad 08:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        }
+
+                        @if (Model.Humedad2 != null)
+                        {
+                            <td class="celda-numeros">@($"{Model.Humedad2}%")</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la humedad 16:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-info" style="width: @(Model.Humedad2)%"></div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="celda-numeros">?</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la humedad 16:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        }
+
+                        @if (Model.Humedad3 != null)
+                        {
+                            <td class="celda-numeros">@($"{Model.Humedad3}%")</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la humedad 24:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-info" style="width: @(Model.Humedad3)%"></div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="celda-numeros">?</td>
+                            <td class="celda-progress">
+                                <!-- Barra de progreso para la humedad 24:00 -->
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        }
+                        
+                        
                     </tr>
                 </tbody>
             </table>
