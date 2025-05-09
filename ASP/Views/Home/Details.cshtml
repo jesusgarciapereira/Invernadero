@@ -34,6 +34,13 @@
         width: 1%;
     }
 
+    .celda-vacia {
+        border: 3px solid black;
+        text-align: center;
+        white-space: nowrap;
+        width: 31%;
+    }
+
 </style>
 
 <div class="container my-5">
@@ -60,23 +67,19 @@
                         @if (Model.Temp1 != null)
                         {
                         <td class="celda-numeros">@($"{Model.Temp1}ºC")</td>
-                        <td class="celda-progress">
-                            <!-- Barra de progreso para la temperatura 08:00 -->
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-primary" style="width: @((Model.Temp1 * 2).ToString().Replace(',', '.'))%"></div>
-                            </div>
-                        </td>
-                        }
-                        else
-                        {
-                            <td class="celda-numeros">?</td>
                             <td class="celda-progress">
                                 <!-- Barra de progreso para la temperatura 08:00 -->
                                 <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
+                                    <div class="progress-bar bg-primary" style="width: @((Model.Temp1 * 2).ToString().Replace(',', '.'))%"></div>
                                 </div>
                             </td>
                         }
+                        else
+                        {
+                            <td colspan="2" class="celda-vacia">?</td>
+                        }
+
+                        
 
                         @if (Model.Temp2 != null)
                         {
@@ -90,14 +93,10 @@
                         }
                         else
                         {
-                            <td class="celda-numeros">?</td>
-                            <td class="celda-progress">
-                                <!-- Barra de progreso para la temperatura 16:00 -->
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
-                                </div>
-                            </td>
+                            <td colspan="2" class="celda-vacia">?</td>
                         }
+
+                        
 
                         @if (Model.Temp3 != null)
                         {
@@ -111,14 +110,9 @@
                         }
                         else
                         {
-                            <td class="celda-numeros">?</td>
-                            <td class="celda-progress">
-                                <!-- Barra de progreso para la temperatura 24:00 -->
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
-                                </div>
-                            </td>
+                            <td colspan="2" class="celda-vacia">?</td>
                         }
+                        
                     </tr>
 
                     <tr>
@@ -136,14 +130,9 @@
                         }
                         else
                         {
-                            <td class="celda-numeros">?</td>
-                            <td class="celda-progress">
-                                <!-- Barra de progreso para la humedad 08:00 -->
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
-                                </div>
-                            </td>
+                            <td colspan="2" class="celda-vacia">?</td>
                         }
+                       
 
                         @if (Model.Humedad2 != null)
                         {
@@ -157,14 +146,10 @@
                         }
                         else
                         {
-                            <td class="celda-numeros">?</td>
-                            <td class="celda-progress">
-                                <!-- Barra de progreso para la humedad 16:00 -->
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
-                                </div>
-                            </td>
+                            <td colspan="2" class="celda-vacia">?</td>
                         }
+
+                        
 
                         @if (Model.Humedad3 != null)
                         {
@@ -178,13 +163,7 @@
                         }
                         else
                         {
-                            <td class="celda-numeros">?</td>
-                            <td class="celda-progress">
-                                <!-- Barra de progreso para la humedad 24:00 -->
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" style="width: 0%"></div>
-                                </div>
-                            </td>
+                            <td colspan="2" class="celda-vacia">?</td>
                         }
                         
                         

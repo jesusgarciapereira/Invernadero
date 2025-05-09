@@ -29,7 +29,7 @@ namespace ASP.Models.VM
                 fechaSeleccionada = value;
             }
         }
-
+        // Ya no hace falta si existe un ViewBag
         //public int IdInvernaderoSeleccionado
         //{
         //    get { return idInvernaderoSeleccionado; }

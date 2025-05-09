@@ -339,4 +339,65 @@ MAUI
 		InvernaderoSeleccionadoPage // Página 2
 
 ASP
-	// TODO: Durante la feria
+	Controllers
+		HomeController: Controller{
+				public IActionResult Index(){
+					// TODO: Muestra la vista principal con el formulario de selección de invernadero y fecha
+				}
+
+				[HttpPost]
+				public IActionResult Index(int idInvernadero, DateTime fecha){
+					// TODO: Retorna a la vista Index desde la vista details pero con los datos seleccionados anteriormente
+				}
+
+				public IActionResult Details(int idInvernadero, DateTime fecha){
+					// TODO: Muestra los detalles de las temperaturas registradas para un invernadero en una fecha específica.
+				}
+			}	
+			
+	Models	
+		VM
+			// Para la página 1. 
+			public class clsSeleccionarInvernaderoVM
+			{
+				private List<clsInvernadero> listadoInvernaderos;
+				// private int idInvernaderoSeleccionado; // Lo necesito, pero lo puedo evitar con un ViewBag en el Controller
+				private DateTime fechaSeleccionada;
+        
+				public List<clsInvernadero> ListadoInvernaderos
+				{
+				    get { return listadoInvernaderos; }
+				}
+
+
+				public DateTime FechaSeleccionada
+				{
+				    get { return fechaSeleccionada; }
+				    set
+				    {
+				        fechaSeleccionada = value;
+				    }
+				}
+				// Ya no hace falta si existe un ViewBag
+				//public int IdInvernaderoSeleccionado
+				//{
+				//    get { return idInvernaderoSeleccionado; }
+				//    set
+				//    {
+				//        idInvernaderoSeleccionado = value;
+				//    }
+				//}
+
+				public clsSeleccionarInvernaderoVM()
+				{
+					// TODO: Inicializa todos los Atributos necesarios
+				}
+			}
+
+			// Para la página 2 ya tengo el Model necesario en el DTO
+
+	Views
+		Index // Página 1
+		Details // Página 2
+
+ 
