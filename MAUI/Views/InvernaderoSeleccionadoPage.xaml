@@ -2,7 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MAUI.VM"
              x:Class="MAUI.Views.InvernaderoSeleccionadoPage"
+             xmlns:converter="clr-namesoace:MAUI.VM.Utils.Converters"
              Title="Temperaturas del Invernadero">
+    
+    
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
