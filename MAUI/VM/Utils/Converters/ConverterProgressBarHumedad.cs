@@ -10,34 +10,35 @@ namespace MAUI.VM.Utils.Converters
     public class ConverterProgressBarHumedad : IValueConverter
     {
         /// <summary>
-        /// Función que recive y convierte un valor entre 0 y 100 y devuelve un float entre 0 y 1
+        /// Convierte un valor de humedad entero (0-100) a un valor double normalizado (0.0 - 1.0)
+        /// para ser usado como valor de progreso en un ProgressBar.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="value">El valor de humedad recibido (esperado como int).</param>
+        /// <param name="targetType">El tipo de destino de la conversión (no usado).</param>
+        /// <param name="parameter">Parámetro adicional para la conversión (no usado).</param>
+        /// <param name="culture">Información de cultura para la conversión (no usada).</param>
+        /// <returns>Un valor double entre 0.0 y 1.0 que representa el porcentaje de humedad.</returns>
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            double humedad = 0;
+            double porcentajeHumedad = 0;
 
             if (value != null)
             {
-                humedad = (double)value / 100.0;
+                // No puedo hacer un cast directamente a double por que el value recibido (es decir, la humedad) es un int
+                // El cast lo hare a int y luego lo divido por un número decimal para que convertirlo a double
+                porcentajeHumedad = (int)value / 100.0;
             }
-            return humedad;
+            return porcentajeHumedad;
         }
 
         /// <summary>
-        /// Retornamos el mismo valor porque no necesitamos ninguna conversión de vuelta
+        /// No implementa la conversión inversa ya que no es necesaria en este contexto.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="value">Valor a convertir de vuelta (no se usa).</param>
+        /// <param name="targetType">Tipo de destino de la conversión inversa (no usado).</param>
+        /// <param name="parameter">Parámetro adicional para la conversión inversa (no usado).</param>
+        /// <param name="culture">Información de cultura para la conversión inversa (no usada).</param>
+        /// <returns>El mismo valor recibido, sin conversión.</returns>
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             return value;

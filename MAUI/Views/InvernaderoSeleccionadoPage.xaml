@@ -1,11 +1,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MAUI.VM"
+             xmlns:converter="clr-namespace:MAUI.VM.Utils.Converters"
              x:Class="MAUI.Views.InvernaderoSeleccionadoPage"
-             xmlns:converter="clr-namesoace:MAUI.VM.Utils.Converters"
              Title="Temperaturas del Invernadero">
-    
-    
+
+    <ContentPage.Resources>
+        <converter:ConverterProgressBarHumedad x:Key="humedadEnPorcentaje"/>
+        <converter:ConverterProgressBarTemperatura x:Key="temperaturaEnPorcentaje"/>
+    </ContentPage.Resources>
+
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
@@ -43,25 +47,25 @@
                         <Label Grid.Row="1" Grid.Column="0" Text="Temperatura:" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" />
 
                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding TemperaturasDeInvernadero.Temp1, StringFormat='{0}ºC', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
-                        <ProgressBar Grid.Row="1" Grid.Column="2" Progress="{Binding ProgessTemp1}" HeightRequest="10" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="1" Grid.Column="2" Progress="{Binding TemperaturasDeInvernadero.Temp1, Converter={StaticResource temperaturaEnPorcentaje}}" HeightRequest="10" VerticalOptions="Center" />
 
                         <Label Grid.Row="1" Grid.Column="3" Text="{Binding TemperaturasDeInvernadero.Temp2, StringFormat='{0}ºC', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
-                        <ProgressBar Grid.Row="1" Grid.Column="4" Progress="{Binding ProgessTemp2}" HeightRequest="10" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="1" Grid.Column="4" Progress="{Binding TemperaturasDeInvernadero.Temp2, Converter={StaticResource temperaturaEnPorcentaje}}" HeightRequest="10" VerticalOptions="Center" />
 
                         <Label Grid.Row="1" Grid.Column="5" Text="{Binding TemperaturasDeInvernadero.Temp3, StringFormat='{0}ºC', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
-                        <ProgressBar Grid.Row="1" Grid.Column="6" Progress="{Binding ProgessTemp3}" HeightRequest="10" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="1" Grid.Column="6" Progress="{Binding TemperaturasDeInvernadero.Temp3, Converter={StaticResource temperaturaEnPorcentaje}}" HeightRequest="10" VerticalOptions="Center" />
 
                         <!-- Fila de Humedad -->
                         <Label Grid.Row="2" Grid.Column="0" Text="Humedad:" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" />
 
                         <Label Grid.Row="2" Grid.Column="1" Text="{Binding TemperaturasDeInvernadero.Humedad1, StringFormat='{0}%', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
-                        <ProgressBar Grid.Row="2" Grid.Column="2" Progress="{Binding ProgessHumedad1}" HeightRequest="10" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="2" Grid.Column="2" Progress="{Binding TemperaturasDeInvernadero.Humedad1, Converter={StaticResource humedadEnPorcentaje}}" HeightRequest="10" VerticalOptions="Center" />
 
                         <Label Grid.Row="2" Grid.Column="3" Text="{Binding TemperaturasDeInvernadero.Humedad2, StringFormat='{0}%', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
-                        <ProgressBar Grid.Row="2" Grid.Column="4" Progress="{Binding ProgessHumedad2}" HeightRequest="10" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="2" Grid.Column="4" Progress="{Binding TemperaturasDeInvernadero.Humedad2, Converter={StaticResource humedadEnPorcentaje}}" HeightRequest="10" VerticalOptions="Center" />
 
                         <Label Grid.Row="2" Grid.Column="5" Text="{Binding TemperaturasDeInvernadero.Humedad3, StringFormat='{0}%', TargetNullValue='?'}" FontSize="16" VerticalOptions="Center" />
-                        <ProgressBar Grid.Row="2" Grid.Column="6" Progress="{Binding ProgessHumedad3}" HeightRequest="10" VerticalOptions="Center" />
+                        <ProgressBar Grid.Row="2" Grid.Column="6" Progress="{Binding TemperaturasDeInvernadero.Humedad3, Converter={StaticResource humedadEnPorcentaje}}" HeightRequest="10" VerticalOptions="Center" />
 
                     </Grid>
 
