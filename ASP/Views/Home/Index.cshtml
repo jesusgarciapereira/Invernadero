@@ -13,9 +13,10 @@
         <label for="idInvernadero">Invernadero</label>
 
         <select class="form-control" id="idInvernadero" name="idInvernadero">
+
             @foreach (clsInvernadero invernadero in Model.ListadoInvernaderos)
             {
-                if (ViewBag.IdInvernaderoSeleccionado != invernadero.IdInvernadero)
+                if (ViewBag.IdInvernaderoInicial != invernadero.IdInvernadero)
                 {
                     <option value="@invernadero.IdInvernadero">@invernadero.Nombre</option>
                 }
@@ -24,13 +25,23 @@
                     <option value="@invernadero.IdInvernadero" selected>@invernadero.Nombre</option>
                 }
             }
+
         </select>
     </div>
 
     <div class="form-group mt-3">
         <label for="fecha">Fecha</label>
-        <input type="date" class="form-control w-auto" id="fecha" name="fecha" value="@Model.FechaSeleccionada.ToString("yyyy-MM-dd")" />
+        <input type="date" class="form-control w-auto" id="fecha" name="fecha" value="@ViewBag.FechaInicial.ToString("yyyy-MM-dd")" />
     </div>
+
+    @if (ViewBag.MostrarError == true)
+    {
+        <div class="alert alert-warning mt-3 text-center" role="alert">
+            <p>No se encuentran datos para ese Invernadero y/o dicha Fecha</p>
+
+            <p>Pista: Todos los Invernaderos tienen registros de Temperatura desde el 29 de Abril hasta el 5 de Mayo de 2025</p>
+        </div>
+    }
 
     <div class="form-group text-center mt-4">
         <input type="submit" value="Detalles" class="btn btn-primary" />

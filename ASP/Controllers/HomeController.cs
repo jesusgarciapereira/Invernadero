@@ -21,6 +21,7 @@ namespace ASP.Controllers
             try
             {
                 seleccionInvernadero = new clsSeleccionarInvernaderoVM();
+                ViewBag.FechaInicial = DateTime.Now;
             }
             catch (SqlException e)
             {
@@ -45,12 +46,14 @@ namespace ASP.Controllers
             {
                 seleccionInvernadero = new clsSeleccionarInvernaderoVM();
 
-                // Asignar valores si vienen por parámetro
+                // Asignar valores si vienen por parámetro, con ViewBag, esto será innecesario
 
-                // seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero; Con el ViewBag, esto será innecesario
-                ViewBag.IdInvernaderoSeleccionado = idInvernadero;
+                // seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero; 
+                // seleccionInvernadero.FechaSeleccionada = fecha;
 
-                seleccionInvernadero.FechaSeleccionada = fecha;
+                ViewBag.IdInvernaderoInicial = idInvernadero;
+                ViewBag.FechaInicial = fecha;
+                
             }
             catch (SqlException)
             {
@@ -68,6 +71,7 @@ namespace ASP.Controllers
         /// <returns>Vista con los detalles de temperatura o vista de error si no hay datos.</returns>
         public IActionResult Details(int idInvernadero, DateTime fecha)
         {
+            ViewBag.MostrarError = false;
             clsTemperaturaConNombreInvernadero invernaderoSeleccionado;
 
             try
@@ -81,7 +85,15 @@ namespace ASP.Controllers
                 }
                 else
                 {
-                    return View("ErrorSinDatos");
+                    clsSeleccionarInvernaderoVM seleccionInvernadero = new clsSeleccionarInvernaderoVM();
+
+                    ViewBag.IdInvernaderoInicial = idInvernadero;
+                    ViewBag.FechaInicial = fecha;
+                    ViewBag.MostrarError = true;
+
+                    return View("Index", seleccionInvernadero);
+                    // A lo mejor no envío otra vista
+                    //return View("ErrorSinDatos");
                 }
 
             }

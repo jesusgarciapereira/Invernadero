@@ -12,6 +12,8 @@ namespace MAUI.VM.Utils.Converters
         /// <summary>
         /// Convierte un valor de humedad entero (0-100) a un valor double normalizado (0.0 - 1.0)
         /// para ser usado como valor de progreso en un ProgressBar.
+        /// Pre: El value del parámetro debe ser un int
+        /// Post: El valor devuelto debe ser un double
         /// </summary>
         /// <param name="value">El valor de humedad recibido (esperado como int).</param>
         /// <param name="targetType">El tipo de destino de la conversión (no usado).</param>

@@ -10,8 +10,9 @@ namespace ASP.Models.VM
     {
         #region Atributos
         private List<clsInvernadero> listadoInvernaderos;
-        // private int idInvernaderoSeleccionado; // Lo necesito, pero lo puedo evitar con un ViewBag en el Controller
-        private DateTime fechaSeleccionada;
+        // Los necesito, pero los puedo evitar con ViewBag en el Controller
+        // private int idInvernaderoSeleccionado; 
+        // private DateTime fechaSeleccionada;
         #endregion
 
         #region Propiedades
@@ -21,14 +22,14 @@ namespace ASP.Models.VM
         }
 
 
-        public DateTime FechaSeleccionada
-        {
-            get { return fechaSeleccionada; }
-            set
-            {
-                fechaSeleccionada = value;
-            }
-        }
+        //public DateTime FechaSeleccionada
+        //{
+        //    get { return fechaSeleccionada; }
+        //    set
+        //    {
+        //        fechaSeleccionada = value;
+        //    }
+        //}
         // Ya no hace falta si existe un ViewBag
         //public int IdInvernaderoSeleccionado
         //{
@@ -45,22 +46,22 @@ namespace ASP.Models.VM
 
         public clsSeleccionarInvernaderoVM()
         {
-
-            try
-            {
+            // Aquí try-catch no, sino en el Controller
+            //try
+            //{
                 listadoInvernaderos = clsListadosInvernaderosBL.ObtenerListadoInvernaderosBL();
                 // Para que aparezca el primero, en la lista de invernaderos
                 listadoInvernaderos.Insert(0, new clsInvernadero(0, "--- Seleccione un Invernadero ---"));
 
-                // Seleccionados originalmente
+                // Seleccionados originalmente, aquí no, sino en el Controller
                 // idInvernaderoSeleccionado = listadoInvernaderos[0].IdInvernadero;
-                fechaSeleccionada = DateTime.Now; // Inicialmente es la fecha actual, como pide el ejercicio
+                //fechaSeleccionada = DateTime.Now; // Inicialmente es la fecha actual, como pide el ejercicio
 
-            }
-            catch (SqlException ex)
-            {
-               // muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
-            }
+            //}
+            //catch (SqlException ex)
+            //{
+            //   // muestraMensaje("Error", "Ha habido un problema en la Base de Datos, vuelva a intentarlo más tarde", "OK");
+            //}
         }
         #endregion
 

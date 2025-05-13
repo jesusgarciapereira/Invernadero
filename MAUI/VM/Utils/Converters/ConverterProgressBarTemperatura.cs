@@ -12,6 +12,8 @@ namespace MAUI.VM.Utils.Converters
         /// <summary>
         /// Convierte una temperatura en grados Celsius (de 0 a 50) a un valor normalizado entre 0.0 y 1.0,
         /// para ser usado como valor de progreso en un ProgressBar.
+        /// Pre: El value del parámetro debe ser un double
+        /// Post: El valor devuelto debe ser un double
         /// </summary>
         /// <param name="value">Temperatura en grados Celsius (esperada como double).</param>
         /// <param name="targetType">Tipo de destino de la conversión (no utilizado).</param>
