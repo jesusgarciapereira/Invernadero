@@ -68,7 +68,7 @@ namespace ASP.Controllers
         /// </summary>
         /// <param name="idInvernadero">ID del invernadero.</param>
         /// <param name="fecha">Fecha de consulta.</param>
-        /// <returns>Vista con los detalles de temperatura o vista de error si no hay datos.</returns>
+        /// <returns>Vista con los detalles de temperatura o de nuevo la Vista Index si no hay datos.</returns>
         public IActionResult Details(int idInvernadero, DateTime fecha)
         {
             ViewBag.MostrarError = false;

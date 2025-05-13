@@ -280,48 +280,12 @@ MAUI
 		clsInvernaderoSeleccionadoVM { // ¿hereda? aquí NO
 
 			private clsTemperaturaConNombreInvernadero temperaturasDeInvernadero;
-			// Los necesito para hacer el Binding con cada ProgressBar
-			private double progessTemp1;
-			private double progessTemp2;
-			private double progessTemp3;
-			private double progessHumedad1;
-			private double progessHumedad2;
-			private double progessHumedad3;
+			// Con los Converter no necesito más atributos
 
 			public clsTemperaturaConNombreInvernadero TemperaturasDeInvernadero
 			{
 			    get { return temperaturasDeInvernadero; }
-			}
-
-			public double ProgessTemp1
-			{
-			    get { return progessTemp1; }
-			}
-
-			public double ProgessTemp2
-			{
-			    get { return progessTemp2; }
-			}
-
-			public double ProgessTemp3
-			{
-			    get { return progessTemp3; }
-			}
-
-			public double ProgessHumedad1
-			{
-			    get { return progessHumedad1; }
-			}
-
-			public double ProgessHumedad2
-			{
-			    get { return progessHumedad2; }
-			}
-
-			public double ProgessHumedad3
-			{
-			    get { return progessHumedad3; }
-			}
+			}	
 
 			public InvernaderoSeleccionadoVM()
 			{
@@ -330,7 +294,7 @@ MAUI
 
 			public InvernaderoSeleccionadoVM(clsTemperaturaConNombreInvernadero temperaturasDeInvernadero)
 			{
-			    TODO: Asigna temperaturasDeInvernadero y calcula todos los progress
+			    TODO: Asigna temperaturasDeInvernadero 
 			}
 		}
 
@@ -361,24 +325,26 @@ ASP
 			public class clsSeleccionarInvernaderoVM
 			{
 				private List<clsInvernadero> listadoInvernaderos;
-				// private int idInvernaderoSeleccionado; // Lo necesito, pero lo puedo evitar con un ViewBag en el Controller
-				private DateTime fechaSeleccionada;
+
+				// Los necesito, pero los puedo evitar con ViewBag en el Controller
+				// private int idInvernaderoSeleccionado; 
+				// private DateTime fechaSeleccionada;
         
 				public List<clsInvernadero> ListadoInvernaderos
 				{
 				    get { return listadoInvernaderos; }
 				}
 
+				// Ya no hacen falta si existen los ViewBag
+				//public DateTime FechaSeleccionada
+				//{
+				//    get { return fechaSeleccionada; }
+				//    set
+				//    {
+				//        fechaSeleccionada = value;
+				//    }
+				//}
 
-				public DateTime FechaSeleccionada
-				{
-				    get { return fechaSeleccionada; }
-				    set
-				    {
-				        fechaSeleccionada = value;
-				    }
-				}
-				// Ya no hace falta si existe un ViewBag
 				//public int IdInvernaderoSeleccionado
 				//{
 				//    get { return idInvernaderoSeleccionado; }

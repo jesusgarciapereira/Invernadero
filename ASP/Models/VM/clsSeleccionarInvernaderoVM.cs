@@ -21,7 +21,7 @@ namespace ASP.Models.VM
             get { return listadoInvernaderos; }
         }
 
-
+        // Ya no hacen falta si existen los ViewBag
         //public DateTime FechaSeleccionada
         //{
         //    get { return fechaSeleccionada; }
@@ -30,7 +30,7 @@ namespace ASP.Models.VM
         //        fechaSeleccionada = value;
         //    }
         //}
-        // Ya no hace falta si existe un ViewBag
+
         //public int IdInvernaderoSeleccionado
         //{
         //    get { return idInvernaderoSeleccionado; }
