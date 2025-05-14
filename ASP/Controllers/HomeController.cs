@@ -31,8 +31,6 @@ namespace ASP.Controllers
                 accion = View("ErrorSql");
             }
 
-            
-
             return accion;
         }
 
