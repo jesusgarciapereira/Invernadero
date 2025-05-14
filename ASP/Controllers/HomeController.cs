@@ -23,6 +23,7 @@ namespace ASP.Controllers
             {
                 seleccionInvernadero = new clsSeleccionarInvernaderoVM();
 
+                accion = View(seleccionInvernadero);
             }
             catch (SqlException e)
             {
@@ -30,7 +31,7 @@ namespace ASP.Controllers
                 accion = View("ErrorSql");
             }
 
-            accion =  View(seleccionInvernadero);
+            
 
             return accion;
         }
@@ -115,14 +116,14 @@ namespace ASP.Controllers
 
                 seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero;
                 seleccionInvernadero.FechaSeleccionada = fecha;
+
+                accion = View("Index", seleccionInvernadero);
             }
             catch (SqlException e)
             {
                 // TODO: Lanzar mensaje de error. Vista Error
                 accion = View("ErrorSql");
             }
-
-            accion= View("Index", seleccionInvernadero);
 
             return accion;
         }
