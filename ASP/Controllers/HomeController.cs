@@ -32,7 +32,7 @@ namespace ASP.Controllers
             return View(seleccionInvernadero);
         }
 
-        
+
 
         /// <summary>
         /// Muestra los detalles de las temperaturas registradas para un invernadero en una fecha específica.
@@ -43,20 +43,38 @@ namespace ASP.Controllers
         [HttpPost]
         public IActionResult Index(int idInvernadero, DateTime fecha)
         {
+            // La Verdad, así no me gusta, que no hagas nada si no seleccionas invernadero vale pero lo demás...
             ViewBag.MostrarError = false;
             clsTemperaturaConNombreInvernadero invernaderoSeleccionado;
 
-
             try
             {
-                invernaderoSeleccionado = clsListadosTemperaturaConNombreInvernaderoBL.ObtenerTemperaturasConNombreInvernaderoPorPKBL
-                    (idInvernadero, fecha);
-
-                if (invernaderoSeleccionado != null)
+                if (idInvernadero != 0)
                 {
-                    return View("Details", invernaderoSeleccionado);
+                    // ¿Comprueba si la fecha está?
+
+                    invernaderoSeleccionado = clsListadosTemperaturaConNombreInvernaderoBL.ObtenerTemperaturasConNombreInvernaderoPorPKBL
+                        (idInvernadero, fecha);
+
+                    if (invernaderoSeleccionado != null)
+                    {
+                        return View("Details", invernaderoSeleccionado);
+                    }
+                    else
+                    {
+                        clsSeleccionarInvernaderoVM seleccionInvernadero = new clsSeleccionarInvernaderoVM();
+
+                        seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero;
+                        seleccionInvernadero.FechaSeleccionada = fecha;
+
+                        ViewBag.MostrarError = true;
+
+                        return View(seleccionInvernadero);
+                        // A lo mejor no envío otra vista
+                        //return View("ErrorSinDatos");
+                    }
                 }
-                else
+                else 
                 {
                     clsSeleccionarInvernaderoVM seleccionInvernadero = new clsSeleccionarInvernaderoVM();
 
@@ -66,10 +84,7 @@ namespace ASP.Controllers
                     ViewBag.MostrarError = true;
 
                     return View(seleccionInvernadero);
-                    // A lo mejor no envío otra vista
-                    //return View("ErrorSinDatos");
                 }
-
             }
             catch (SqlException e)
             {
