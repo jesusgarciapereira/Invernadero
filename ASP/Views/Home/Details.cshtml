@@ -174,11 +174,12 @@
     </div>
 
     <!--Para volver atrás-->
-    <div class="mt-4 text-center">
-        <button type="button" class="btn btn-primary" onclick="window.history.back();">
-            Seleccionar otro Invernadero
-        </button>
-    </div>
+    <form asp-action="Details" method="get" class="mt-4 text-center">
+        <input type="hidden" name="idInvernadero" value="@Model.IdInvernadero" />
+        <input type="hidden" name="fecha" value="@Model.Fecha.ToString("yyyy-MM-dd")" />
+        <button type="submit" class="btn btn-primary">Seleccionar otro Invernadero</button>
+    </form>
+
 </div>
 
 

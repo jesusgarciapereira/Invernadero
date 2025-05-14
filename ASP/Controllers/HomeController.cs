@@ -21,7 +21,7 @@ namespace ASP.Controllers
             try
             {
                 seleccionInvernadero = new clsSeleccionarInvernaderoVM();
-                ViewBag.FechaInicial = DateTime.Now;
+
             }
             catch (SqlException e)
             {
@@ -31,6 +31,8 @@ namespace ASP.Controllers
 
             return View(seleccionInvernadero);
         }
+
+        
 
         /// <summary>
         /// Muestra los detalles de las temperaturas registradas para un invernadero en una fecha específica.
@@ -44,6 +46,7 @@ namespace ASP.Controllers
             ViewBag.MostrarError = false;
             clsTemperaturaConNombreInvernadero invernaderoSeleccionado;
 
+
             try
             {
                 invernaderoSeleccionado = clsListadosTemperaturaConNombreInvernaderoBL.ObtenerTemperaturasConNombreInvernaderoPorPKBL
@@ -51,17 +54,18 @@ namespace ASP.Controllers
 
                 if (invernaderoSeleccionado != null)
                 {
-                    return View(invernaderoSeleccionado);
+                    return View("Details", invernaderoSeleccionado);
                 }
                 else
                 {
                     clsSeleccionarInvernaderoVM seleccionInvernadero = new clsSeleccionarInvernaderoVM();
 
-                    ViewBag.IdInvernaderoInicial = idInvernadero;
-                    ViewBag.FechaInicial = fecha;
+                    seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero;
+                    seleccionInvernadero.FechaSeleccionada = fecha;
+
                     ViewBag.MostrarError = true;
 
-                    return View("Index", seleccionInvernadero);
+                    return View(seleccionInvernadero);
                     // A lo mejor no envío otra vista
                     //return View("ErrorSinDatos");
                 }
@@ -75,6 +79,30 @@ namespace ASP.Controllers
 
 
         }
+        /// <summary>
+        /// Vuelve a la Vista Index pero con los datos que habíamos seleccionado anteriormente
+        /// </summary>
+        /// <param name="idInvernadero">ID del invernadero.</param>
+        /// <param name="fecha">Fecha de consulta.</param>
+        /// <returns>Vista Index con los datos seleccionados anteriormente</returns>
+        public IActionResult Details(int idInvernadero, DateTime fecha)
+        {
+            clsSeleccionarInvernaderoVM seleccionInvernadero;
 
+            try
+            {
+                seleccionInvernadero = new clsSeleccionarInvernaderoVM();
+
+                seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero;
+                seleccionInvernadero.FechaSeleccionada = fecha;
+            }
+            catch (SqlException e)
+            {
+                // TODO: Lanzar mensaje de error. Vista Error
+                return View("ErrorSql");
+            }
+
+            return View("Index", seleccionInvernadero);
+        }
     }
 }
