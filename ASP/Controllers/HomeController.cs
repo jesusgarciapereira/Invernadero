@@ -31,37 +31,6 @@ namespace ASP.Controllers
 
             return View(seleccionInvernadero);
         }
-        /// <summary>
-        /// Retorna a la vista Index desde la vista Details pero con los datos seleccionados anteriormente.
-        /// </summary>
-        /// <param name="idInvernadero">ID del invernadero seleccionado.</param>
-        /// <param name="fecha">Fecha seleccionada.</param>
-        /// <returns>Vista Index con datos seleccionados.</returns>
-        [HttpPost]
-        public IActionResult Index(int idInvernadero, DateTime fecha)
-        {
-            clsSeleccionarInvernaderoVM seleccionInvernadero;
-
-            try
-            {
-                seleccionInvernadero = new clsSeleccionarInvernaderoVM();
-
-                // Asignar valores si vienen por parámetro, con ViewBag, esto será innecesario
-
-                // seleccionInvernadero.IdInvernaderoSeleccionado = idInvernadero; 
-                // seleccionInvernadero.FechaSeleccionada = fecha;
-
-                ViewBag.IdInvernaderoInicial = idInvernadero;
-                ViewBag.FechaInicial = fecha;
-                
-            }
-            catch (SqlException)
-            {
-                return View("ErrorSql");
-            }
-
-            return View(seleccionInvernadero);
-        }
 
         /// <summary>
         /// Muestra los detalles de las temperaturas registradas para un invernadero en una fecha específica.

@@ -309,11 +309,6 @@ ASP
 					// TODO: Muestra la vista principal con el formulario de selección de invernadero y fecha
 				}
 
-				[HttpPost]
-				public IActionResult Index(int idInvernadero, DateTime fecha){
-					// TODO: Retorna a la vista Index desde la vista details pero con los datos seleccionados anteriormente
-				}
-
 				public IActionResult Details(int idInvernadero, DateTime fecha){
 					// TODO: Muestra los detalles de las temperaturas registradas para un invernadero en una fecha específica.
 				}
