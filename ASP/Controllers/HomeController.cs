@@ -16,7 +16,8 @@ namespace ASP.Controllers
         /// <returns>Vista Index con el ViewModel de selección de invernadero.</returns>
         public IActionResult Index()
         {
-            clsSeleccionarInvernaderoVM seleccionInvernadero;
+            IActionResult accion;
+            clsSeleccionarInvernaderoVM seleccionInvernadero = null;
 
             try
             {
@@ -26,10 +27,12 @@ namespace ASP.Controllers
             catch (SqlException e)
             {
                 // TODO: Lanzar mensaje de error. Vista Error
-                return View("ErrorSql");
+                accion = View("ErrorSql");
             }
 
-            return View(seleccionInvernadero);
+            accion =  View(seleccionInvernadero);
+
+            return accion;
         }
 
 
@@ -40,9 +43,10 @@ namespace ASP.Controllers
         /// <param name="idInvernadero">ID del invernadero.</param>
         /// <param name="fecha">Fecha de consulta.</param>
         /// <returns>Vista con los detalles de temperatura o de nuevo la Vista Index si no hay datos.</returns>
-        [HttpPost]
+        [HttpPost] // Significa que ha entrado en un input type="submit"
         public IActionResult Index(int idInvernadero, DateTime fecha)
         {
+            IActionResult accion;
             // La Verdad, así no me gusta, que no hagas nada si no seleccionas invernadero vale pero lo demás...
             ViewBag.MostrarError = false;
             clsTemperaturaConNombreInvernadero invernaderoSeleccionado;
@@ -58,7 +62,7 @@ namespace ASP.Controllers
 
                     if (invernaderoSeleccionado != null)
                     {
-                        return View("Details", invernaderoSeleccionado);
+                        accion = View("Details", invernaderoSeleccionado);
                     }
                     else
                     {
@@ -69,7 +73,7 @@ namespace ASP.Controllers
 
                         ViewBag.MostrarError = true;
 
-                        return View(seleccionInvernadero);
+                        accion = View(seleccionInvernadero);
                         // A lo mejor no envío otra vista
                         //return View("ErrorSinDatos");
                     }
@@ -83,16 +87,16 @@ namespace ASP.Controllers
 
                     ViewBag.MostrarError = true;
 
-                    return View(seleccionInvernadero);
+                    accion =  View(seleccionInvernadero);
                 }
             }
             catch (SqlException e)
             {
                 // TODO: Lanzar mensaje de error. Vista Error
-                return View("ErrorSql");
+                accion = View("ErrorSql");
             }
 
-
+            return accion;
         }
         /// <summary>
         /// Vuelve a la Vista Index pero con los datos que habíamos seleccionado anteriormente
@@ -102,7 +106,8 @@ namespace ASP.Controllers
         /// <returns>Vista Index con los datos seleccionados anteriormente</returns>
         public IActionResult Details(int idInvernadero, DateTime fecha)
         {
-            clsSeleccionarInvernaderoVM seleccionInvernadero;
+            IActionResult accion;
+            clsSeleccionarInvernaderoVM seleccionInvernadero = null;
 
             try
             {
@@ -114,10 +119,12 @@ namespace ASP.Controllers
             catch (SqlException e)
             {
                 // TODO: Lanzar mensaje de error. Vista Error
-                return View("ErrorSql");
+                accion = View("ErrorSql");
             }
 
-            return View("Index", seleccionInvernadero);
+            accion= View("Index", seleccionInvernadero);
+
+            return accion;
         }
     }
 }
